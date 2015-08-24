@@ -34,17 +34,10 @@
 #include "log.h"
 #include "util.h"
 
-void cdma_properties(char default_cdma_sub[], char default_network[],
-                     char operator_numeric[], char operator_alpha[])
+void cdma_properties(char default_cdma_sub[], char default_network[])
 {
     property_set("ro.telephony.default_cdma_sub", default_cdma_sub);
     property_set("ro.telephony.default_network", default_network);
-    property_set("ro.cdma.home.operator.numeric", operator_numeric);
-    property_set("gsm.sim.operator.numeric", operator_numeric);
-    property_set("gsm.operator.numeric", operator_numeric);
-    property_set("ro.cdma.home.operator.alpha", operator_alpha);
-    property_set("gsm.sim.operator.alpha", operator_alpha);
-    property_set("gsm.operator.alpha", operator_alpha);
 
     property_set("telephony.lteOnCdmaDevice", "1");
     property_set("ro.ril.svdo", "true");
@@ -98,7 +91,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.ril.set.mtusize", "1420");
     } else if (strstr(bootmid, "0P9C30000")) {
         /* a5chl */
-        cdma_properties("1", "8", "311490", "Virgin Mobile US");
+        cdma_properties("1", "8");
         property_set("ro.build.fingerprint", "htc/sprint_wwe_vm/htc_a5chl:5.0.2/LRX22G/510432.2:user/release-keys");
         property_set("ro.build.description", "2.33.652.2 CL510432 release-keys");
         property_set("ro.product.model", "710C");
@@ -106,6 +99,12 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.build.product", "htc_a5chl");
         property_set("ro.ril.oem.ecclist", "911");
         property_set("ro.ril.set.mtusize", "1422");
+        property_set("ro.cdma.home.operator.numeric", "310120");
+        property_set("gsm.sim.operator.numeric", "310120");
+        property_set("gsm.operator.numeric", "310120");
+        property_set("ro.cdma.home.operator.alpha", "Sprint");
+        property_set("gsm.sim.operator.alpha", "Sprint");
+        property_set("gsm.operator.alpha", "310120");
         property_set("ro.telephony.ril_class", "a5sprRIL");
     } else {
         /* a5ul */
