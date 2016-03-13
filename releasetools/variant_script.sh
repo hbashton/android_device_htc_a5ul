@@ -11,5 +11,5 @@ esac
 
 basedir="/system/blobs/$variant/"
 cd $basedir
-chmod 755 bin/*
+#chmod 755 bin/*
 find . -type f | while read file; do ln -s $basedir$file /system/$file ; done

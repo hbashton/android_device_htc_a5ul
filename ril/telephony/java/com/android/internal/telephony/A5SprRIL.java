@@ -27,13 +27,13 @@ import com.android.internal.telephony.uicc.IccCardStatus;
  *
  * {@hide}
  */
-public class a5sprRIL extends RIL {
+public class A5SprRIL extends A5RIL {
 
-    public a5sprRIL(Context context, int networkMode, int cdmaSubscription) {
+    public A5SprRIL(Context context, int networkMode, int cdmaSubscription) {
         super(context, networkMode, cdmaSubscription, null);
     }
 
-    public a5sprRIL(Context context, int preferredNetworkType,
+    public A5SprRIL(Context context, int preferredNetworkType,
             int cdmaSubscription, Integer instanceId) {
         super(context, preferredNetworkType, cdmaSubscription, instanceId);
     }

@@ -43,6 +43,11 @@ PRODUCT_PACKAGES += \
     com.android.nfc_extras \
     nfc_nci.pn54x.default
 
+# Overrides
+PRODUCT_COPY_FILES_OVERRIDES := \
+    $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf \
+    $(LOCAL_PATH)/configs/apns-conf.xml:system/etc/apns-conf.xml
+
 # Variant linking script
 PRODUCT_COPY_FILES += \
     device/htc/a5ul/releasetools/variant_script.sh:install/bin/variant_script.sh
