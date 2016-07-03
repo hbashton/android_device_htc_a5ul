@@ -27,13 +27,15 @@ import android.os.Message;
  */
 public class A5RIL extends RIL {
 
-    public A5RIL(Context context, int networkMode, int cdmaSubscription) {
-        super(context, networkMode, cdmaSubscription, null);
+    public A5RIL(Context context, int preferredNetworkType, int cdmaSubscription) {
+        super(context, preferredNetworkType, cdmaSubscription, null);
+        mQANElements = 5;
     }
 
     public A5RIL(Context context, int preferredNetworkType,
             int cdmaSubscription, Integer instanceId) {
         super(context, preferredNetworkType, cdmaSubscription, instanceId);
+        mQANElements = 5;
     }
 
     @Override
