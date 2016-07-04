@@ -35,9 +35,6 @@ TARGET_OTA_ASSERT_DEVICE := htc_a5,htc_a5tl,htc_a5chl,htc_a5ul,a5,a5tl,a5chl,a5u
 # Audio
 AUDIO_FEATURE_DISABLED_MULTI_VOICE_SESSIONS := true
 
-# Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := device/htc/a5ul/releasetools
-
 # RIL
 BOARD_PROVIDES_LIBRIL := true
 BOARD_RIL_CLASS := ../../../device/htc/a5ul/ril

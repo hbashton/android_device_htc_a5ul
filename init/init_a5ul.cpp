@@ -38,7 +38,6 @@ void cdma_properties(char const default_cdma_sub[], char const default_network[]
 {
     property_set("ro.telephony.default_cdma_sub", default_cdma_sub);
     property_set("ro.telephony.default_network", default_network);
-
     property_set("telephony.lteOnCdmaDevice", "1");
     property_set("ro.ril.svdo", "true");
     property_set("ro.ril.disable.fd.plmn.prefix", "23402,23410,23411,23420");
@@ -59,6 +58,7 @@ void gsm_properties(char const default_network[])
     property_set("ro.ril.enable.sdr", "1");
     property_set("ro.ril.enable.r8fd", "1");
     property_set("ro.ril.disable.fd.plmn.prefix", "23402,23410,23411,23420,23594,27202,27205");
+    property_set("ro.telephony.ril_class", "A5RIL");
 }
 
 void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
@@ -89,10 +89,9 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.ril.disable.fd.plmn.prefix", "23402,23410,23411,23420,27202");
         property_set("ro.ril.oem.ecclist", "112,000,08,110,118,119,911,999,120,122");
         property_set("ro.ril.set.mtusize", "1420");
-        property_set("ro.telephony.ril_class", "A5RIL");
     } else if (strstr(bootmid, "0P9C30000")) {
         /* a5chl */
-        cdma_properties("1", "8");
+        cdma_properties("1","8");
         property_set("ro.build.fingerprint", "htc/sprint_wwe_vm/htc_a5chl:5.0.2/LRX22G/510432.2:user/release-keys");
         property_set("ro.build.description", "2.33.652.2 CL510432 release-keys");
         property_set("ro.product.model", "710C");
@@ -123,7 +122,6 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("persist.radio.jbims", "1");
         property_set("ro.ril.enable.gea3", "1");
         property_set("ro.ril.gsm.to.lte.blind.redir", "1");
-        property_set("ro.telephony.ril_class", "A5RIL");
     }
 
     property_get("ro.product.device", device);

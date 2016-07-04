@@ -17,6 +17,9 @@
 # Local overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
+# make MTP,ADB happier
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/configs/init.qcom.usb.rc:root/init.qcom.usb.rc
+
 # Inherit from a5-common
 $(call inherit-product, device/htc/a5-common/a5-common.mk)
 
@@ -47,7 +50,3 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES_OVERRIDES := \
     $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/configs/apns-conf.xml:system/etc/apns-conf.xml
-
-# Variant linking script
-PRODUCT_COPY_FILES += \
-    device/htc/a5ul/releasetools/variant_script.sh:install/bin/variant_script.sh
