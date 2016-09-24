@@ -28,6 +28,9 @@
  */
 
 #include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <fstream>
 
 #include "vendor_init.h"
 #include "property_service.h"
@@ -61,20 +64,14 @@ void gsm_properties(char const default_network[])
     property_set("ro.telephony.ril_class", "A5RIL");
 }
 
-void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
+void vendor_load_properties()
 {
-    char platform[PROP_VALUE_MAX];
-    char bootmid[PROP_VALUE_MAX];
-    char device[PROP_VALUE_MAX];
-    int rc;
-
-    rc = property_get("ro.board.platform", platform);
-    if (!rc || strncmp(platform, ANDROID_TARGET, PROP_VALUE_MAX))
+    std::string platform = property_get("ro.board.platform");
+    if (platform != ANDROID_TARGET)
         return;
 
-    property_get("ro.boot.mid", bootmid);
-
-    if (strstr(bootmid, "0P9C10000")) {
+    std::string bootmid = property_get("ro.boot.mid");
+    if (bootmid == "0P9C10000") {
         /* a5tl */
         gsm_properties("9");
         property_set("ro.build.fingerprint", "htc/htccn_chs_cmcc/htc_a5tl:4.4.2/KOT49H/391137.3:user/release-keys");
@@ -89,7 +86,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.ril.disable.fd.plmn.prefix", "23402,23410,23411,23420,27202");
         property_set("ro.ril.oem.ecclist", "112,000,08,110,118,119,911,999,120,122");
         property_set("ro.ril.set.mtusize", "1420");
-    } else if (strstr(bootmid, "0P9C30000")) {
+    } else if (bootmid == "0P9C30000") {
         /* a5chl */
         cdma_properties("1","8");
         property_set("ro.build.fingerprint", "htc/sprint_wwe_vm/htc_a5chl:5.0.2/LRX22G/510432.2:user/release-keys");
@@ -97,12 +94,13 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.product.model", "710C");
         property_set("ro.product.device", "htc_a5chl");
         property_set("ro.build.product", "htc_a5chl");
-/*        property_set("gsm.sim.operator.numeric", "310120");
-        property_set("gsm.operator.numeric", "310120");
-        property_set("gsm.sim.operator.alpha", "Sprint");
-        property_set("gsm.operator.alpha", "310120");
+        property_set("gsm.sim.operator.numeric", "000000");
+        property_set("gsm.operator.numeric", "000000");
+        property_set("gsm.sim.operator.alpha", "Chameleon");
+        property_set("gsm.operator.alpha", "Chameleon");
         property_set("ro.cdma.home.operator.numeric", "311490");
-        property_set("ro.cdma.home.operator.alpha", "Virgin Mobile"); */
+        property_set("ro.cdma.home.operator.alpha", "Virgin Mobile"); 
+        property_set("ro.home.operator.carrierid", "Sprint"); 
         property_set("ro.ril.oem.ecclist", "911");
         property_set("ro.ril.set.mtusize", "1422");
         property_set("gsm.sim.operator.iso-country", "us");
@@ -123,7 +121,6 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.ril.enable.gea3", "1");
         property_set("ro.ril.gsm.to.lte.blind.redir", "1");
     }
-
-    property_get("ro.product.device", device);
-    ERROR("Found bootmid %s setting build properties for %s device\n", bootmid, device);
+      std::string device = property_get("ro.product.device"); 
+      ERROR("Found bootmid %s setting build properties for %s device\n", bootmid.c_str(), device.c_str());
 }

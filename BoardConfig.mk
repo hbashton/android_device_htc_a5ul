@@ -30,10 +30,18 @@
 -include device/htc/a5-common/BoardConfigCommon.mk
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := htc_a5,htc_a5tl,htc_a5chl,htc_a5ul,a5,a5tl,a5chl,a5ul
-
+ifneq (eng,$(TARGET_BUILD_VARIANT))
+# not -eng, not specifically building recovery
+TARGET_OTA_ASSERT_DEVICE := a5,htc_a5,htc_a5tl,htc_a5chl,htc_a5ul,a5tl,a5chl,a5ul
+else
+#recovery, should play nice with all QC a5 variants
+TARGET_OTA_ASSERT_DEVICE := a5,htc_a5,htc_a5tl,htc_a5chl,htc_a5ul,a5tl,a5chl,a5ul,htc_a5dwg,htc_a5dug,a5dwg,a5dug
+endif
 # Audio
 AUDIO_FEATURE_DISABLED_MULTI_VOICE_SESSIONS := true
+TARGET_AUDIO_VARIANT := caf
+TARGET_MEDIA_VARIANT := caf
+TARGET_DISPLAY_VARIANT := caf
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
@@ -42,6 +50,8 @@ BOARD_RIL_CLASS := ../../../device/htc/a5ul/ril
 # Vendor Init
 TARGET_UNIFIED_DEVICE := true
 TARGET_LIBINIT_DEFINES_FILE := device/htc/a5ul/init/init_a5ul.cpp
+TARGET_INIT_VENDOR_LIB := libinit_a5ul
+TARGET_RECOVERY_DEVICE_MODULES := libinit_a5ul
 
 # Inherit from the proprietary version
 -include vendor/htc/a5ul/BoardConfigVendor.mk

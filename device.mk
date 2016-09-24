@@ -44,7 +44,10 @@ PRODUCT_PACKAGES += \
     NfcNci \
     Tag \
     com.android.nfc_extras \
-    nfc_nci.pn54x.default
+    nfc_nci.pn54x.default 
+
+PRODUCT_PACKAGES += \
+    Gello
 
 # Overrides
 PRODUCT_COPY_FILES_OVERRIDES := \
