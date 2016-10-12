@@ -41,7 +41,7 @@ endif
 AUDIO_FEATURE_DISABLED_MULTI_VOICE_SESSIONS := true
 
 # RIL
-BOARD_PROVIDES_LIBRIL := true
+#BOARD_PROVIDES_LIBRIL := true
 BOARD_RIL_CLASS := ../../../device/htc/a5ul/ril
 
 # Vendor Init

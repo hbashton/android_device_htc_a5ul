@@ -44,7 +44,7 @@ PRODUCT_PACKAGES += \
     NfcNci \
     Tag \
     com.android.nfc_extras \
-    nfc_nci.pn54x.default 
+    nfc_nci
 
 # Overrides
 PRODUCT_COPY_FILES_OVERRIDES := \

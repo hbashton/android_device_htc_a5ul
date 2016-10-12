@@ -21,6 +21,7 @@ import android.os.Parcel;
 import com.android.internal.telephony.RIL;
 import com.android.internal.telephony.uicc.IccCardApplicationStatus;
 import com.android.internal.telephony.uicc.IccCardStatus;
+import com.android.internal.telephony.uicc.IccUtils; 
 
 /**
  * RIL customization for A5 (Sprint variant)
