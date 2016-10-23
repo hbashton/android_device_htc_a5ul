@@ -44,7 +44,7 @@ PRODUCT_PACKAGES += \
     NfcNci \
     Tag \
     com.android.nfc_extras \
-    nfc_nci
+    nfc_nci_msm8226
 
 # Overrides
 PRODUCT_COPY_FILES_OVERRIDES := \
